@@ -32,9 +32,8 @@ const SearchBar = ({ onSubmit }) => {
           onChange={handleChange}
           className={styles.input}
         />
-        
       </form>
-      <button type="submit" className={styles.button}>Search</button>
+       <button type="submit" className={styles.button}>Search</button>
     </header>
   );
 };
