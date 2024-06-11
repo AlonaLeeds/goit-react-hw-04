@@ -4,11 +4,15 @@ import ImageCard from '../ImageCard/ImageCard';
 import styles from './ImageGallery.module.css';
 
 const ImageGallery = ({ images, onImageClick }) => (
-  <ul className={styles.gallery}>
-    {images.map((image) => (
-      <ImageCard key={image.id} image={image} onClick={onImageClick} />
+  <div className={styles.gallery}>
+    <ul className={styles.list}>
+      {images.map(image => (
+       <li className={styles.item} key={image.id}>
+          <ImageCard  image={image} onClick={onImageClick} />
+       </li>
     ))}
-  </ul>
+    </ul>
+  </div>
 );
 
 ImageGallery.propTypes = {

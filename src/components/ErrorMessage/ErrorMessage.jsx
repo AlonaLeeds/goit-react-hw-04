@@ -1,15 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './ErrorMessage.module.css';
+import css from './ErrorMessage.module.css';
 
-const ErrorMessage = ({ message }) => (
-  <div className={styles.error}>
-    <p>{message}</p>
-  </div>
-);
+const ErrorMessage=({message})=> {
+  return (    
+      <p className={css.error}>{message}</p>    
+  );
+}
 
-ErrorMessage.propTypes = {
-  message: PropTypes.string.isRequired,
-};
 
 export default ErrorMessage;
