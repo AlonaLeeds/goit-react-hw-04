@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ onSubmit }) => {
@@ -32,8 +32,9 @@ const SearchBar = ({ onSubmit }) => {
           onChange={handleChange}
           className={styles.input}
         />
+        <button type="submit" className={styles.button}>Search</button>
       </form>
-       <button type="submit" className={styles.button}>Search</button>
+       
     </header>
   );
 };

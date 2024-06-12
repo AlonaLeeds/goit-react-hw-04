@@ -4,4 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+.not-found-message {
+  padding: 100px;
+  text-align: center;
+  font-size: 30px;
+}
 

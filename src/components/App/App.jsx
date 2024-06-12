@@ -18,6 +18,7 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const [modalImage, setModalImage] = useState(null);
 
   const fetchImages = useCallback(async () => {
@@ -33,9 +34,15 @@ const App = () => {
           client_id: API_KEY,
         },
       });
-      setImages((prevImages) => (page === 1 ? response.data.results : [...prevImages, ...response.data.results]));
+      if (response.data.results.length === 0) {
+        setNotFound(true);
+      } else {
+        setImages((prevImages) => (page === 1 ? response.data.results : [...prevImages, ...response.data.results]));
+        setNotFound(false);
+      }
     } catch (err) {
       setError(err.message);
+      setNotFound(false); // Встановлюємо false, якщо є помилка
     } finally {
       setLoading(false);
     }
@@ -50,6 +57,7 @@ const App = () => {
     setQuery(newQuery);
     setPage(1);
     setImages([]);
+    setNotFound(false); // Скидаємо стан notFound при новому пошуку
   };
 
   const handleLoadMore = () => {
@@ -68,9 +76,15 @@ const App = () => {
     <div className="App">
       <SearchBar onSubmit={handleSearch} />
       {error && <ErrorMessage message={error} />}
-      <ImageGallery images={images} onImageClick={handleImageClick} />
-      {loading && <Loader />}
-      {images.length > 0 && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
+      {notFound ? (
+        <p className="not-found-message">No images found for "{query}"... 📷</p>
+      ) : (
+        <>
+          <ImageGallery images={images} onImageClick={handleImageClick} />
+          {loading && <Loader />}
+          {images.length > 0 && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
+        </>
+      )}
       {modalImage && (
         <ImageModal
           isOpen={Boolean(modalImage)}
