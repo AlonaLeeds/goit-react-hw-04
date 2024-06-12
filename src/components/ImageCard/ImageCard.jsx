@@ -8,7 +8,8 @@ const ImageCard = ({ image, onClick }) => (
       src={image.urls.small}
       alt={image.alt_description}
       className={styles.image}
-      onClick={() => onClick(image)} />
+      onClick={() => onClick(image)}
+    />
   </li>
 );
 
