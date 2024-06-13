@@ -5,9 +5,9 @@ import styles from './ImageCard.module.css';
 const ImageCard = ({ image, onClick }) => (
   <li className={styles.card} >
     <img
+      className={styles.image}
       src={image.urls.small}
       alt={image.alt_description}
-      className={styles.image}
       onClick={() => onClick(image)}
     />
   </li>
